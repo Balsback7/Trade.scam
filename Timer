@@ -1,0 +1,22 @@
+-- Create a ScreenGui and TextLabel to display the timer
+local player = game.Players.LocalPlayer
+local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+
+local timerLabel = Instance.new("TextLabel", screenGui)
+timerLabel.Size = UDim2.new(0, 200, 0, 50)
+timerLabel.Position = UDim2.new(0.5, -100, 0.5, -25)
+timerLabel.Text = "Time Left: 180 seconds"
+timerLabel.TextScaled = true
+timerLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- White background
+timerLabel.TextColor3 = Color3.fromRGB(0, 0, 0) -- Black text
+
+local timeLeft = 180 -- 3 minutes in seconds
+
+-- Countdown function
+while timeLeft > 0 do
+    timerLabel.Text = "Time Left: " .. timeLeft .. " seconds"
+    wait(1) -- Wait for 1 second
+    timeLeft = timeLeft - 1
+end
+
+timerLabel.Text = "Time's up!"
