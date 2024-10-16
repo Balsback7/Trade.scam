@@ -1,0 +1,32 @@
+local PabloLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/BatuKvi123/PabloLibV3/main/PabloLibV3"))()
+local window = PabloLib:Create(
+    "🔫🔥Mm2 BalsHub🔫🔥", -- Name here.
+    "Enabled", -- If you want draggable set here to "Enabled" if you don't want, set to "Disabled".
+    "p" -- You can put any keybind here to open/close.
+)
+
+-- Tabs --
+local tab2 = window:CreateTab("others")
+local tab1 = window:CreateTab("🔫Mm2 scripts🔪")
+
+-- Buttons --
+
+tab1:CreateButton("Nexus", function()
+print("Loading Nexus")
+loadstring(game:HttpGet("https://rawscripts.net/raw/Murder-Mystery-2-nexus-updated-19396"))()
+end)
+
+tab1:CreateButton("YARHM", function()
+print("Loading YARHM")
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-YARHM-12403"))()
+end)
+
+tab2:CreateButton("Fe emotes", function()
+print("Loading Fe Emotes")
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Fe-emotes-15813"))()
+end)
+
+tab2:CreateButton("Infinite yield", function()
+print("Loading Infinite yield")
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-infinite-yield-19569"))()
+end)
